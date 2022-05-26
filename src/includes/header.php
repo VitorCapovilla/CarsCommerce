@@ -2,30 +2,38 @@
     require_once("links.html");
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #202057">
-    <a class="text-light navbar-brand" href="../index.php">{Logo}</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #0069b4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar scroll</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link text-light" href="../pages/index.php">Produtos <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" href="../view/videos.php">Vídeos <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" href="../view/noticias.php">Notícias <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-        <!-- Lado direito -->
-        <div class="my-2 my-lg-0 mr-2">
-            <a href="../view/login.php"><i class="fa-solid fa-user text-light"></i></a>
-        </div>
-        <div class="my-2 my-lg-0 ml-2">
-            <a href="../view/cart.php"><i class="fa-solid fa-cart-shopping text-light"></i></a>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Carros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Vídeos</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Link
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+            <li><a class="dropdown-item" href="#">Carros</a></li>
+            <li><a class="dropdown-item" href="#">Vídeos</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Link</a>
+        </li>
+      </ul>
+        <div class="d-flex">
+            oi
         </div>
     </div>
+  </div>
 </nav>

@@ -1,67 +1,100 @@
-<?php 
-require_once("../includes/links.html");
-require_once("../includes/functions.php");
-require_once("../includes/sessions.php");
-require_once("../services/produtoDTO.php");
-require_once("../services/produtoDAO.php"); 
+<?php
+
+    require_once ("../model/MarcaDTO.php");
+    require_once ("../model/MarcaDAO.php");
+    require_once ("../includes/functions.php");
+    require_once ("../includes/sessions.php");
+    require_once ("../includes/header.php");
+
+
+    $dao = new MarcaDAO();
+    $obj = new MarcaDTO();
+  
+    $url = "verMarcas.php";
+    $msgSuccess = null;
+    $msgError = null;
+  
+    $novo = true;
+    
+    if (isset($_GET["redirect"])){
+      $url = $_GET["redirect"];
+    }
+  
+    if(isset($_GET["codigo"])){
+      $obj = $dao->obter_codigo($_GET["codigo"]);
+      $novo = false;
+    }
+  
+    if(isset($_POST["Cadastrar"])){
+      $obj = to_object();
+  
+      if ($novo){
+        if($dao->inserir($obj)){
+          $msgSuccess = "Marca incluída com sucesso!";
+        }else{
+          $msgError = "Erro ao incluir a marca, contate um administrador!";
+        }
+  
+        $obj = new MarcaDTO();
+      }
+      else{
+        if($dao->alterar($obj))
+          header('Location: ' . $url);
+        else
+          $msgError = "Algo deu errado, contate um administrador!";
+      }
+    }
+
+    function to_object(){
+        $obj = new MarcaDTO();
+    
+        $obj->set_codigo($_POST["codigo"]);
+        $obj->set_marca($_POST["marca"]);
+    
+        return $obj;
+      }
 ?>
 
-<!-- Refazer o esquema de puxar a categoria (marca) -->
+<br />
+<div class="container">
+  <div class="row">
+    <form action="" method="POST">
+      <div class="row">
+        <h3 class="text-center">Adicionar Marca</h3>
 
-<!-- Incluindo o header -->
-<?php require_once ("../includes/header.php"); ?>
+        <div class="form-group mb-2 col-md-12">
+          <?php
+              if ($msgSuccess)
+                echo "<div class = 'alert alert-success' role='alert'>" . $msgSuccess . "</div>";
+              
+              if ($msgError)
+                echo "<div class = 'alert alert-danger' role='alert'>" . $msgError . "</div>";
 
-<!-- Inicio-Main -->
-<script>
-        $(document).ready(function () {
-            $('#Preco').maskMoney({prefix: "R$ ", decimal: ",", thousands: "."});
-        });
-    </script>
-
-    <br>
-<main>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-            <?php 
-
-            echo ErrorMessage(); 
-            echo SuccessMessage(); 
-            
             ?>
-                <form action="addMarca.php" method="POST">
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <h1><b>Adicionar Novo Carro</b></h1>
-                        </div>
-                        <div class="card-body">
-                            <!-- Titulo do produto -->
-                            <div class="form-group">
-                                <label for="image"><span class="InfoCampo"> Selecione uma Imagem:</span></label>
-                                <input class="form-control" type="file" name="image" id="image" accept="image/*">
-                            </div>
-                            <br>
-                            <!-- Botões -->
-                            <div class="row">
-                                <div class="d-grid gap-2 col-6 mx-auto mb-2">
-                                    <a href="../PainelADM/PainelADM.html" class="col btn btn-warning btn-block" style="margin: 1rem 0px 0px 0px;">Voltar</a>
-                                </div>
-                                <div class="d-grid gap-2 col-6 mx-auto mb-2">
-                                    <button type="submit" name="Enviar" class="btn btn-success btn-block" style="margin: 1rem 0px 0px 0px;">
-                                        Adicionar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
         </div>
-    </div>
-</main>
-<br>
+
+        <input id="Codigo" name="codigo" value=<?php echo "'" . $obj->get_codigo() . "'"; ?> hidden>
+
+        <div class="form-group mb-2 col-md-12 col-sm-12">
+          <label for="marca" class="form-label">Título da Marca</label>
+          <input class="form-control" type="text" id="marca" name="marca" value=<?php echo "'" . $obj->get_marca() .
+          "'"; ?>>
+        </div>
+
+        <div class="form-group mt-3">
+          <button type="submit" name="Cadastrar" class="btn btn-primary text-light col-md-12">
+            <i class="fa fa-check"> </i> &nbsp; Salvar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+<br />
 
 <!-- Fim-Main -->
 
 <!-- Incluindo o footer -->
-<?php require_once("../includes/footer.php"); ?>
+<div class="fixed-bottom">
+  <?php require_once("../includes/footer.php"); ?>
+</div>

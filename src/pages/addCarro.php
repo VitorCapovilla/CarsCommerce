@@ -1,16 +1,55 @@
 <?php 
-require_once("../includes/links.html");
-require_once("../includes/functions.php");
-require_once("../includes/sessions.php");
-require_once("../services/marcaDAO.php");
-require_once("../services/marcaDTO.php");
-require_once("../services/modeloDAO.php");
-require_once("../services/modeloDTO.php");
-require_once("../services/produtoDTO.php");
-require_once("../services/produtoDAO.php");
 
+    require_once("../model/CarroDAO.php");
+    require_once("../model/CarroDTO.php");
+    require_once("../includes/sessions.php");
 
-$marca 
+    $dao = new MarcaDAO();
+    $obj = new MarcaDTO();
+  
+    $url = "verMarcas.php";
+    $msgSuccess = null;
+    $msgError = null;
+  
+    $novo = true;
+    
+    if (isset($_GET["redirect"])){
+      $url = $_GET["redirect"];
+    }
+  
+    if(isset($_GET["codigo"])){
+      $obj = $dao->obter_codigo($_GET["codigo"]);
+      $novo = false;
+    }
+  
+    if(isset($_POST["Cadastrar"])){
+      $obj = to_object();
+  
+      if ($novo){
+        if($dao->inserir($obj)){
+          $msgSuccess = "Marca incluída com sucesso!";
+        }else{
+          $msgError = "Erro ao incluir a marca, contate um administrador!";
+        }
+  
+        $obj = new MarcaDTO();
+      }
+      else{
+        if($dao->alterar($obj))
+          header('Location: ' . $url);
+        else
+          $msgError = "Algo deu errado, contate um administrador!";
+      }
+    }
+
+    function to_object(){
+        $obj = new MarcaDTO();
+    
+        $obj->set_codigo($_POST["codigo"]);
+        $obj->set_marca($_POST["marca"]);
+    
+        return $obj;
+    }
 ?>
 
 <?php require_once ("../includes/header.php"); ?>
@@ -27,29 +66,7 @@ $marca
 
     <div class = "row">
         <h4>Adicionar Novo Carro</h4>
-
         <form id = "ticket" class = "mt-3" action="" method="POST">
-
-            <?php
-                if (isset($_POST["email"])){
-                    $email = $_POST["email"];
-                    $telefone = $_POST["telefone"];
-                    $posto = $_POST["posto"];
-                    $nome = StringUtils::get_normal_case($_POST["nome"]);
-                    $tipo = $_POST["tipo"];
-                    $assunto = $_POST["assunto"];
-                    $descricao = $_POST["descricao"];
-
-                    try{
-                        $service = new produtoDAO();
-                        $objTicket = $service->abrir_ouvidoria($email, $nome, $telefone, $posto, $tipo, $assunto, $descricao);
-                        ShowSuccessMessage("Agradecemos o envio do formulário!<br>Sua solicitação foi registrada e em breve retornaremos o contato!");
-                    }
-                    catch(Exception $ex){
-                        ShowErrorMessage("Não foi possível abrir o ticket! Contate-nos pelos canais de suporte telefônicos!");
-                    }
-                }
-            ?>
 
             <div class = "mt-2 row">
 

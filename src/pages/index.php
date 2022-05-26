@@ -1,13 +1,13 @@
 <?php 
 
-require_once("../includes/links.html");
-require_once("../includes/header.php");
-require_once("../services/produtoDAO.php");
-require_once("../services/produtoDTO.php");
-require_once("../services/sliderDAO.php");
-require_once("../services/sliderDTO.php");
-require_once("../services/loginDTO.php");
-require_once("../services/loginDAO.php");
+  require_once("../includes/links.html");
+  require_once("../model/CarroDAO.php");
+  require_once("../model/CarroDTO.php");
+  // require_once("../model/sliderDAO.php");
+  // require_once("../model/sliderDTO.php");
+  // require_once("../model/loginDTO.php");
+  // require_once("../model/loginDAO.php");
+  require_once("../includes/header.php");
 
 ?>
 
