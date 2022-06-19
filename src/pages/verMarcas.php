@@ -20,6 +20,7 @@
                     <tr class="text-center">
                         <th>Código</th>
                         <th>Marca</th>
+                        <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,17 +28,17 @@
                         foreach($lstMarcas as $objMarca){
                             echo "<tr>
                                     <td class=\"text-center\"> " . $objMarca->get_codigo() . "</td>
-                                    <td class=\"text-center\"> " . $objMarca->get_marca() . "</td>
+                                    <td class=\"text-center\"> " . $objMarca->get_nome_marca() . "</td>
                                     <td class=\"text-center\">
-                                        <a href='addMarca.php?codigo=" . $objMarca->get_codigo() . "' class='btn btn-primary' style=\"margin:4px; margin-top:5px\"><span>Editar</span></a>
-                                        <a href='excluirMarcas.php?codigo=". $objMarca->get_codigo() . "' class=\" btn btn-danger\"  style=\"margin:4px; margin-top:5px\"><span>Delete</span></a>
+                                        <a href='Marca.php?codigo=" . $objMarca->get_codigo() . "' class='btn btn-primary' style=\"margin:4px; margin-top:5px\"><span>Editar</span></a>
+                                        <a href='excluirMarca.php?codigo=". $objMarca->get_codigo() . "' class=\" btn btn-danger\"  style=\"margin:4px; margin-top:5px\"><span>Delete</span></a>
                                     </td>
                                 </tr>";
                             }
                     ?>
                 </tbody>
             </table>
-            <a class="btn btn-success float-end" href="addMarca.php"><i class="fa-solid fa-circle-plus"></i> &nbsp;Adicionar Marca</a>
+            <a class="btn btn-success float-end" href="Marca.php"><i class="fa-solid fa-circle-plus"></i> &nbsp;Adicionar Marca</a>
         </div>
     </div>
 </div>

@@ -28,7 +28,7 @@
         }
 
         public function excluir($codigo){
-            $sql = $this->con->query("DELETE from marca WHERE (codigo = '" . $codigo . "')");
+            $sql = $this->con->query("DELETE FROM marca WHERE (codigo = '" . $codigo . "')");
 
             if($sql->rowCount() > 0){
                 return true;
