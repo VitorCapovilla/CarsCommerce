@@ -11,15 +11,15 @@
         }
 
         public function inserir($obj){ 
-            $sql = $this->con->query("INSERT INTO marca (marca) VALUES (
-            '" . $obj->get_marca() . "')");
+            $sql = $this->con->query("INSERT INTO marca (nome) VALUES (
+            '" . $obj->get_nome_marca() . "')");
 
             return ($sql->rowCount() > 0);
         }
 
         public function alterar($obj){
             $sql = "UPDATE marca SET 
-                marca = '" . $obj->get_marca() . "'
+                nome = '" . $obj->get_nome_marca() . "'
                 WHERE (codigo = " . $obj->get_codigo() . ")";
             
             $result = $this->con->query($sql);
@@ -40,7 +40,7 @@
         private function obter_lista($cond = ""){
             $lista = [];
     
-            $sql = "SELECT codigo, marca FROM marca";
+            $sql = "SELECT codigo, nome FROM marca";
             
             if ($cond != "")
                 $sql = $sql . " WHERE (" . $cond . ")";
@@ -50,9 +50,9 @@
             $meu_comando = $this->con->query($sql);
     
             while ($linha = $meu_comando->fetch(PDO::FETCH_ASSOC)){
-                $obj = new MarcaDTO();
+                $obj = new marca();
                 $obj->set_codigo($linha['codigo']);
-                $obj->set_marca($linha['marca']);
+                $obj->set_nome_marca($linha['nome']);
                 
                 array_push($lista, $obj);
             }

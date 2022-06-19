@@ -1,8 +1,8 @@
 <?php 
 
-    class MarcaDTO{
+    class marca{
         private $codigo;
-        private $marca;
+        private $nome;
 
         public function __construct(){
 
@@ -16,12 +16,12 @@
             return $this->codigo;
         }
 
-        public function set_marca($obj){
-            $this->marca = $obj;
+        public function set_nome_marca($obj){
+            $this->nome = $obj;
         }
 
-        public function get_marca(){
-            return $this->marca;
+        public function get_nome_marca(){
+            return $this->nome;
         }
     }
 
