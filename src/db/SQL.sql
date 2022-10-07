@@ -14,12 +14,14 @@ CREATE TABLE produtos (
 
 create table marca(
     codigo int(6) PRIMARY KEY not null AUTO_INCREMENT,
-    marca varchar(25)
+    nome varchar(25)
 );
 
 create table modelo(
     codigo int(6) PRIMARY KEY not null AUTO_INCREMENT,
-    modelo varchar(25)
+    nome varchar(25),
+    marca int(6),
+    categoria int(6),
 );
 
 create table administrador(
@@ -34,4 +36,9 @@ create table administrador(
 create table cargo(
     codigo int(6) PRIMARY KEY not null AUTO_INCREMENT,
     cargo varchar(20)
+);
+
+create table categoria(
+    codigo int(6) PRIMARY KEY not null AUTO_INCREMENT,
+    categoria varchar(20)
 );

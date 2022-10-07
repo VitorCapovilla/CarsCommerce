@@ -8,5 +8,5 @@
 
     $objMarcaDAO->excluir($codigo);
 
-    Redirect_to('verMarcas.php');
+    Redirect_to('verModelos.php');
 ?>

@@ -4,10 +4,6 @@
         private $codigo;
         private $nome;
 
-        public function __construct(){
-
-        }
-
         public function set_codigo($obj){
             $this->codigo = $obj;
         }

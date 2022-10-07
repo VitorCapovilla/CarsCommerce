@@ -1,5 +1,5 @@
 <?php
-
+  
   require_once ("../model/MarcaDTO.php");
   require_once ("../model/MarcaDAO.php");
   require_once ("../includes/functions.php");
@@ -12,11 +12,14 @@
   if(isset($_GET["codigo"])){
     $marca = $marcaDAO->obter_codigo($_GET["codigo"]);
     $title_str = "Alterar";
+    $url = "Marca.php?codigo=".$_GET["codigo"];
   }else{
     $title_str = "Adicionar";
+    $url = "Marca.php";
   }
 
   if(isset($_POST["SalvarMarca"])){
+    session_start();
     $codigo = $_POST["codigo"];
     $marca->set_codigo($codigo);
   
@@ -41,8 +44,8 @@
       $marca = new marca();
     }else{
       if($marcaDAO->alterar($marca)){
-      $_SESSION["SuccessMessage"] = "Marca alterada com sucesso!";
-      SuccessMessage();
+        $_SESSION["SuccessMessage"] = "Marca alterada com sucesso!";
+        SuccessMessage();
       }else{
         $_SESSION["ErrorMessage"] = "Erro ao alterar o nome da marca";
         ErrorMessage();

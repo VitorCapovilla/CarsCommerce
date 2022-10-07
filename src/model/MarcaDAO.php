@@ -1,7 +1,7 @@
 <?php 
 
-    require_once("MarcaDTO.php");
-    require_once("../db/conexao.php");
+    require_once ("MarcaDTO.php");
+    require_once ("../db/conexao.php");
 
     class MarcaDAO{
         private $con;

@@ -42,8 +42,8 @@
       $categoria = new categoria();
     }else{
       if($categoriaDAO->alterar($categoria)){
-      $_SESSION["SuccessMessage"] = "Categoria alterada com sucesso!";
-      SuccessMessage();
+        $_SESSION["SuccessMessage"] = "Categoria alterada com sucesso!";
+        SuccessMessage();
       }else{
         $_SESSION["ErrorMessage"] = "Erro ao alterar o nome da categoria";
         ErrorMessage();
